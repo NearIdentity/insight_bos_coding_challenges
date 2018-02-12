@@ -18,8 +18,26 @@ Explanation: It's the substring "abc" four times. (And the substring "abcabc" tw
 """
 
 def is_substring_helper (data):
+# =============================================================================
+#     Input: string, lowercase, <10000 in length
+#     Output: True/False, based on if the there are repeated substring in the input string  
+# =============================================================================
     # YOUR CODE HERE
-    return False
+    div=2
+    ans=False
+    while div<=int(len(data)/2):
+        if len(data)%div==0:
+            match = 0
+            sec_len=int(len(data)/div)
+            for n in range(0,div-1):
+                if data[sec_len*n:sec_len*(n+1)] in data[sec_len*(n+1):sec_len*(n+2)]:
+                    match+=1
+                if match == (div-1):
+                    ans = True
+            if ans == True:
+                break
+        div+=1
+    return ans
 
 #DON NOT CHANGE THIS FUNCTION
 def is_substring (string_input):

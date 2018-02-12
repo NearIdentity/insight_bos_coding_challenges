@@ -23,8 +23,21 @@ class ListNode:
         self.next = None
 
 def oddEvenList_Helper(head):
-   # YOUR CODE HERE
-   return
+    if head.next != None:
+        odd_even_connection = head.next
+        odd = head
+        even = head.next
+        
+        while odd != None and even != None :
+            odd.next = odd.next.next
+            odd = odd.next
+            
+            even.next = even.next.next
+            even = even.next
+            
+        odd.next = odd_even_connection
+
+    return head
 
 
 #DO NOT CHANGE THIS FUNCTION
@@ -39,9 +52,14 @@ def main():
     head.next.next = ListNode(3)
     head.next.next.next = ListNode(4)
     head.next.next.next.next = ListNode(5)
+#    head.next.next.next.next.next = ListNode(6)
+#    head.next.next.next.next.next.next = ListNode(7)
     head =  oddEvenList(head)
+#    print (type(head))
+#    print ("{}".format(head.next.data))
     print ("Expected result: 1, 3, 5, 2, 4")
     print ("Your result is {}, {}, {}, {}, {}".format(head.data, head.next.data, head.next.next.data, head.next.next.next.data, head.next.next.next.next.data))
+#    print ("Your result is {}, {}, {}, {}, {}, {}, {}".format(head.data, head.next.data, head.next.next.data, head.next.next.next.data, head.next.next.next.next.data, head.next.next.next.next.next.data, head.next.next.next.next.next.next.data))
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,5 @@
 """
-Given a string check if it can be constructed by taking a substring of it and appending multiple copies of the substring 
-together. You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.
+Given a string check if it can be constructed by taking a substring of it and appending multiple copies of the substring together. You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.
 
 Example 1:
 Input: "abab"
@@ -17,9 +16,20 @@ Output: True
 Explanation: It's the substring "abc" four times. (And the substring "abcabc" twice.)
 """
 
+
 def is_substring_helper (data):
-    # YOUR CODE HERE
-    return False
+	#YOUR CODE GOES HERE
+    if len(data) %len(set(data)) != 0:
+        return False
+
+    else:
+        delta = len(set(data))
+        for c in set(data):
+            temp =  [pos for pos, char in enumerate(data) if char == c]
+            for index in range(len(temp)-1):
+                if not (temp[index + 1] - temp[index] == delta):
+                    return False
+    return True
 
 #DON NOT CHANGE THIS FUNCTION
 def is_substring (string_input):

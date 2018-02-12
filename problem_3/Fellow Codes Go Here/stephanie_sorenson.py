@@ -1,5 +1,5 @@
 """
-Given a string check if it can be constructed by taking a substring of it and appending multiple copies of the substring 
+Given a string check if it can be constructed by taking a substring of it and appending multiple copies of the substring
 together. You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.
 
 Example 1:
@@ -17,9 +17,13 @@ Output: True
 Explanation: It's the substring "abc" four times. (And the substring "abcabc" twice.)
 """
 
-def is_substring_helper (data):
-    # YOUR CODE HERE
-    return False
+def is_substring_helper(data):
+    # approach 1: increment forward, see if that substring be multiplied
+    for i in range(1, min(int(len(data)/2), int(10000/2))+1):
+        substr = data[:i]
+        if len(data) % len(substr) == 0:
+            if substr * int(len(data) / len(substr)) == data: return True
+    return False # if its empty or one letter, also just returning false...
 
 #DON NOT CHANGE THIS FUNCTION
 def is_substring (string_input):

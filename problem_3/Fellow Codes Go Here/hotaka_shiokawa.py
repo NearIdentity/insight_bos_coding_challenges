@@ -17,9 +17,39 @@ Output: True
 Explanation: It's the substring "abc" four times. (And the substring "abcabc" twice.)
 """
 
+# O(n * number of divisor) version
 def is_substring_helper (data):
     # YOUR CODE HERE
+    n = len(data)
+    for i in range(1,n/2+1): # no need to go beyond n/2
+        if n%i==0 and data[:i]*(n//i)==data:
+            return True
     return False
+
+"""
+# Pure O(n) version, but somewhat more complicated.
+def is_substring_helper (data):
+    # YOUR CODE HERE
+    n = len(data)
+    i1 = 0 
+    i2 = 1
+    candidate = False
+    while i2 < n:
+        if (data[i1] != data[i2]) and candidate:
+                i1 = 0
+                candidate = False
+        if (data[i1] == data[i2]):
+            if candidate == False and n%i2==0:
+                    len_substr = i2
+                    candidate = True
+            i1 += 1
+        i2 += 1
+
+    if candidate: return True
+    else: return False
+"""
+
+
 
 #DON NOT CHANGE THIS FUNCTION
 def is_substring (string_input):

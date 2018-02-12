@@ -23,8 +23,29 @@ class ListNode:
         self.next = None
 
 def oddEvenList_Helper(head):
-   # YOUR CODE HERE
-   return
+
+    # head_odd keeps track of the last consecutive odd from the left
+    head_odd = head
+    
+    # head_even_1 and head_even_2 keep track of the first and last consecutive evens from the left
+    head_even_1 = head.next
+    head_even_2 = head.next
+    
+    # iterate until either head_even_2 or head_even_2.next = None (no more odds)
+    while head_even_2 and head_even_2.next:
+        
+        # move head_even_2.next (which is an odd) to in between head_odd and head_even_1, and increment head_odd
+        head_odd.next = head_even_2.next
+        head_odd = head_odd.next
+        
+        # increment head_even_2 after updating its link (head_odd.next still points to the next even)
+        head_even_2.next = head_odd.next
+        head_even_2 = head_even_2.next
+        
+        # update the link of the last consecutive odd to the start of the evens
+        head_odd.next = head_even_1
+        
+    return head
 
 
 #DO NOT CHANGE THIS FUNCTION

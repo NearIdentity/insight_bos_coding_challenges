@@ -18,7 +18,10 @@ Explanation: It's the substring "abc" four times. (And the substring "abcabc" tw
 """
 
 def is_substring_helper (data):
-    # YOUR CODE HERE
+    length = len(data)
+    for i in range(1, length):
+        if length % i == 0 and data[:i]*(int(length/i)) == data:
+            return True
     return False
 
 #DON NOT CHANGE THIS FUNCTION

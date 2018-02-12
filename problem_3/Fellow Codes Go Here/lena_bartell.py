@@ -17,13 +17,26 @@ Output: True
 Explanation: It's the substring "abc" four times. (And the substring "abcabc" twice.)
 """
 
-def is_substring_helper (data):
-    # YOUR CODE HERE
-    return False
+
+def is_substring_helper(data):
+
+    matched = False
+    match_len = len(data) // 2
+
+    while not matched and match_len > 0:
+        N, rem = len(data) // match_len, len(data) % match_len
+
+        if not rem:
+            matched = data[:match_len] * N == data
+
+        match_len -= 1
+
+    return matched
+
 
 #DON NOT CHANGE THIS FUNCTION
 def is_substring (string_input):
-	return is_substring_helper(string_input)
+    return is_substring_helper(string_input)
 
 
 #test case
