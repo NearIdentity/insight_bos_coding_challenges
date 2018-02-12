@@ -28,7 +28,13 @@ def is_substring_helper(data):
     if not substring:
         factors = [i for i in range(1, len(data)//2 + 1) if not len(data)%i]
         for factor in factors:
-            substring = (check_even_string(data[factor:]))&(data[:factor] == data[factor:factor*2])
+            data_new = data[factor:]
+            while len(data_new) > factor:
+                substring = check_even_string(data_new)
+                data_new = data_new[:len(data_new)//2]
+                if substring == False:
+                    break
+            substring = substring & (data_new == data[factor:])
             if substring == True:
                 break
     return substring
