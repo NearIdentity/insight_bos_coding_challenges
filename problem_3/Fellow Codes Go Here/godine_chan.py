@@ -27,10 +27,15 @@ def is_substring_helper (data):
     ans=False
     while div<=int(len(data)/2):
         if len(data)%div==0:
-            ans = True
+            match = 0
+            sec_len=int(len(data)/div)
             for n in range(0,div-1):
-                if data[div*n:div*(n+1)] not in data[div*(n+1):div*(n+2)]:
-                    ans = False
+                if data[sec_len*n:sec_len*(n+1)] in data[sec_len*(n+1):sec_len*(n+2)]:
+                    match+=1
+                if match == (div-1):
+                    ans = True
+            if ans == True:
+                break
         div+=1
     return ans
 
